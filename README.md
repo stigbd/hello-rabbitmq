@@ -1,7 +1,7 @@
 # hello-rabbitmq
 
 ## RabbitMQ
-RabbitMQs web-console is reachable at <http://localhost:8080>.
+RabbitMQs web-console is reachable at <http://localhost:15672>.
 
 ## Receiver
 The simple will wait for messages, and upon receiving, log it to the console. To watch the console log do `make logs`.
