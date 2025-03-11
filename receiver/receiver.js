@@ -6,8 +6,8 @@ var config = {
   connection: {
     protocol: 'amqp://',
     name: 'default',
-    user: 'guest',
-    pass: 'guest',
+    user: process.env.RABBITMQ_DEFAULT_USER,
+    pass: process.env.RABBITMQ_DEFAULT_PASS,
     host: 'rabbitmq',
     port: 5672
   },

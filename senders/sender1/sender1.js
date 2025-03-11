@@ -9,8 +9,8 @@ var config = {
   connection: {
     protocol: 'amqp://',
     name: 'default',
-    user: 'guest',
-    pass: 'guest',
+    user: process.env.RABBITMQ_DEFAULT_USER,
+    pass: process.env.RABBITMQ_DEFAULT_PASS,
     host: 'rabbitmq',
     port: 5672
   },
@@ -65,11 +65,20 @@ rabbit
 })
 .then(null, function(err) {
   console.log('Error on configuring rabbit: ', err);
+  process.exit(1);
 });
 
 // parse application/json
 app.use(bodyParser.json());
 
+app.use((err, req, res, next) => {
+  if (err) {
+    console.log(err)
+    res.status(400).json({error: err.message})
+  } else {
+    next()
+  }
+})
 app.post('/', function(req, res){
   var message = JSON.stringify(req.body);
   console.log(" [x] received POST with body: " + message );
@@ -81,7 +90,9 @@ app.post('/', function(req, res){
     console.log(" [x] Sent " + JSON.stringify(payload));
   })
   .catch( function(err) {
-    console.log(err);
+    console.log("Error sending message: ", err);
+    res.sendStatus(500)
+    return;
   });
 
   res.sendStatus(201);

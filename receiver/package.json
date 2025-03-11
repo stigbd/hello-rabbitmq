@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-      "start": "node receiver.js"
+    "start": "node receiver.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "rabbot": "latest"
+    "rabbot": "^2.1.0"
   }
 }

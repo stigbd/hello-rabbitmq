@@ -43,7 +43,7 @@ stop:
 	docker-compose rm -sf
 
 restart-sender1: stop-sender1
-	docker rmi rabbitmqtest_sender1 || true
+	docker rmi hello-rabbitmq_sender1 || true
 	docker-compose --x-networking up -d sender1
 	docker-compose logs sender1
 

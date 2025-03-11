@@ -1,4 +1,4 @@
-# rabbitmqtest
+# hello-rabbitmq
 
 ## RabbitMQ
 RabbitMQs web-console is reachable at <http://localhost:8080>.
@@ -13,3 +13,9 @@ curl -H "Content-Type: application/json" -d '{"question":"wtf?"}' -X POST http:/
 ```
 ## Sender 2
 Sender2 will (re)send publish a message to the queue "hello" every second.
+
+
+## Check health
+```
+docker inspect --format "{{json .State.Health }}" <container name> | jq
+```
